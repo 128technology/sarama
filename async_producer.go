@@ -913,6 +913,7 @@ func (bp *brokerProducer) handleSuccess(sent *produceSet, response *ProduceRespo
 			}
 			for i, msg := range pSet.msgs {
 				msg.Offset = block.Offset + int64(i)
+				Logger.Printf("successfully wrote message onto topic %v on partition %d with offset %d", msg.Topic, msg.Partition, msg.Offset)
 			}
 			bp.parent.returnSuccesses(pSet.msgs)
 		// Duplicate
